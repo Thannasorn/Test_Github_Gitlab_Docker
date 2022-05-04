@@ -1,26 +1,19 @@
 image: node:latest
 
 stages:  
-  - test     
   - build
-  - deploy
+  - test     
   
-testPJ:   
-  stage: test   
-  script:
-    - yarn
-    - yarn test
-
 buildPJ:      
   stage: build
   script:
     - yarn
     - yarn build
 
-deployPJ:
-  stage: deploy
-  only:
-    - main
+testPJ:   
+  stage: test   
   script:
-    - yarn global add firebase-tools --cache-folder node_modules
-    - firebase deploy --token $FIREBASE_DEPLOY_KEY
+    - yarn
+    - yarn test
+
+
